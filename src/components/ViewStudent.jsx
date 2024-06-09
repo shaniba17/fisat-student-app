@@ -1,34 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import NavBar from './NavBar'
+import axios from 'axios'
 
 const ViewStudent = () => {
-    const [data,changedata]=useState([
+    const [data,changedata]=useState([])
+    const fetchData=()=>
         {
-            "_id": "66651683741a512717d92b87",
-            "firstname": "Manu",
-            "lastname": "R",
-            "college": "FISAT",
-            "dob": "02/04/1999",
-            "course": "B-Tech Comp Science",
-            "mobile": "+91 95266 7443",
-            "email": "aa@gmail.com",
-            "address": "Kochi",
-            "__v": 0
-            },
-            {
-            "_id": "666516bc741a512717d92b88",
-            "firstname": "Rahul",
-            "lastname": "D",
-            "college": "FISAT",
-            "dob": "02/01/1992",
-            "course": "MCA",
-            "mobile": "+91 95266 74440",
-            "email": "aa@gmail.com",
-            "address": "Test Address",
-            "__v": 0
-            }
-
-    ])
+            axios.get("https://anishpdm.github.io/dummy-api-new/student.json")
+            .then(
+                response =>{
+                    console.log(response.data)
+                    changedata(response.data)
+                }
+            )
+            .catch().finally()
+        }
+        useEffect(()=>{fetchData()},[])
     return (
         <div>
             <NavBar/>
