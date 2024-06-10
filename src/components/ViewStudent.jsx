@@ -6,14 +6,20 @@ const ViewStudent = () => {
     const [data,changedata]=useState([])
     const fetchData=()=>
         {
-            axios.get("https://anishpdm.github.io/dummy-api-new/student.json")
+            axios.get("https://courseapplogix.onrender.com/getdata")
             .then(
                 response =>{
                     console.log(response.data)
                     changedata(response.data)
                 }
             )
-            .catch().finally()
+            .catch(
+                (error)=>
+                    {
+                        console.log(error.message)
+                        alert(error.message)
+                    }
+            ).finally()
         }
         useEffect(()=>{fetchData()},[])
     return (
